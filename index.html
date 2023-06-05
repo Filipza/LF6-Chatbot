@@ -5,7 +5,7 @@
     <meta name="author" content="Gruppe 7" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kundensupport</title>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
       rel="stylesheet" />
@@ -20,12 +20,12 @@
       <div class="row">
         <!-- START CONTENT -->
         <div class="content p-0 col-lg-12 col-md-12">
-          <div class="chat-content-area">
+          <div class="chat-content-area pb-4">
             <!-- START GPT CHAT -->
-            <div class="row gpt-chat-box">
+            <div class="gpt-chat-box">
               <div class="sub-chat-box">
                 <div class="chat-icon">
-                  <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+                  <img class="chatgpt-icon" src="images/gpt-icon.png" />
                 </div>
                 <div class="chat-txt">
                   Herzlich willkommen zum XYZ GmbH Support! Ich bin Ihr
@@ -49,7 +49,7 @@
             <div class="row gpt-chat-box">
               <div class="sub-chat-box">
                 <div class="chat-icon">
-                  <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+                  <img class="chatgpt-icon" src="images/gpt-icon.png" />
                 </div>
                 <div class="chat-txt">
                   Leider konnte ich Ihr Anliegen nicht zuordnen. Bitte wählen
@@ -70,7 +70,7 @@
             <!-- START CHAT INPUTS -->
           </div>
           <div
-            class="chat-input-area d-flex justify-content-center overflow-hidden">
+            class="chat-input-area d-flex justify-content-center overflow-hidden mt-3">
             <div class="row">
               <div class="col-12 chat-inputs-area-inner">
                 <form
@@ -91,4 +91,5 @@
       </div>
     </div>
   </body>
+  <script type="module" src="js/chat.js"></script>
 </html>
