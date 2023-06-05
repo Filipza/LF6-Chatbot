@@ -21,7 +21,6 @@ submitForm.addEventListener("submit", (e) => {
 function checkInput(input) {
   const keywords = [...orderKeywords, ...helpKeywords, ...menuKeywords];
   for (const keyword of keywords) {
-    console.log(input.toLowerCase().includes(keyword));
     if (input.toLowerCase().includes(keyword)) {
       if (orderKeywords.includes(keyword)) {
         createSupportChatbox(
@@ -77,7 +76,7 @@ function createSupportChatbox(message, pills) {
   let pillsTemplate = "";
   if (pills.length > 0) {
     for (const pill of pills) {
-      pillsTemplate += `<button class="option-btn p-1 me-2 btn btn-light">
+      pillsTemplate += `<button class="option-btn p-1 me-2 btn btn-light" data-type="${pill}">
         ${pill}
       </button>`;
     }
@@ -99,4 +98,15 @@ function createSupportChatbox(message, pills) {
 
   chatContentArea.insertAdjacentHTML("beforeend", template);
   chatContentArea.lastChild.scrollIntoView({ block: "center" });
+
+  document.querySelectorAll(".option-btn").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const pillType = pill.getAttribute("data-type");
+      createUserChatbox(pillType);
+      pill.parentElement.remove();
+      if (pillType == "Retouren") {
+        console.log("pille funzt");
+      }
+    });
+  });
 }
