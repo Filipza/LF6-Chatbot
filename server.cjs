@@ -6,17 +6,17 @@ const app = express();
 app.use(cors());
 const port = 3000;
 
-var con = mysql.createConnection({
+const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'change-me',
-  database: 'test',
+  password: 'changeme',
+  database: 'chatbot',
 });
 
 con.connect();
 
-app.get('/', cors(), (_, res) => {
-  con.query('SELECT * from users', (_, result) => {
+app.get('/orders', cors(), (_, res) => {
+  con.query('SELECT * from orders', (_, result) => {
     res.send(JSON.stringify({ result }));
   });
 });
