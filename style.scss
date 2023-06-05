@@ -105,9 +105,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .chat-inputs-area-inner {
-  padding-top: 30px;
-  padding-left: 150px;
-  padding-right: 150px;
+  width: 80vw;
 }
 
 .fa-paper-plane {
@@ -125,10 +123,16 @@ input[type="range"]::-webkit-slider-thumb {
   color: #ffffff;
 }
 
-.form-select {
-  border: 1px solid rgb(96, 95, 95);
-  height: 40px;
-  border-radius: 5px;
+.sub-chat-box {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+}
+
+.submit-btn {
+  background-color: transparent;
+  border: none;
+  height: 50px;
 }
 
 small {
@@ -191,9 +195,9 @@ footer {
     padding-left: 20px;
   }
 
-  .chat-inputs-area-inner {
-    padding-left: 50px;
-    padding-right: 54px;
-    margin-bottom: 30px;
-  }
+  // .chat-inputs-area-inner {
+  //   padding-left: 50px;
+  //   padding-right: 54px;
+  //   margin-bottom: 30px;
+  // }
 }

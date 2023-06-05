@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Gruppe 7" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kundensupport</title>
     <script type="module" src="./main.js"></script>
     <link
@@ -22,15 +22,18 @@
         <div class="content p-0 pt-2 col-lg-12 col-md-12">
           <div class="chat-content-area">
             <!-- START USER CHAT -->
-            <div class="row user-chat-box">
-              <div class="chat-icon">
-                <img class="chatgpt-icon" src="images/user-icon.png" />
+            <div class="user-chat-box">
+              <div class="sub-chat-box">
+                <div class="chat-icon">
+                  <img class="chatgpt-icon" src="images/user-icon.png" />
+                </div>
+                <div class="chat-txt">who are you?</div>
               </div>
-              <div class="chat-txt">who are you?</div>
             </div>
 
             <!-- START GPT CHAT -->
             <div class="row gpt-chat-box">
+              <div class="sub-chat-box">
               <div class="chat-icon">
                 <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
               </div>
@@ -41,24 +44,26 @@
                 assist you with any questions or tasks you may have to the best
                 of my abilities!
               </div>
-            
+              </div>
+            </div>
 
-          <!-- START CHAT INPUTS -->
-        </div>
-      </div>
-      <div class="chat-input-area overflow-hidden">
-        <div class="row">
-          <div class="col-12 chat-inputs-area-inner">
-            <div
-              class="row chat-inputs-container d-flex align-items-center">
-              <textarea
-                name=""
-                id=""
-                class="col-11"
-                placeholder="Send a message"></textarea>
-              <span class="col-1">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-              </span>
+            <!-- START CHAT INPUTS -->
+          </div>
+          <div class="chat-input-area d-flex justify-content-center overflow-hidden">
+            <div class="row">
+              <div class="col-12 chat-inputs-area-inner">
+                <form
+                  class="row chat-inputs-container d-flex align-items-center">
+                  <textarea
+                    name=""
+                    id=""
+                    class="col-11"
+                    placeholder="Send a message"></textarea>
+                  <button class="col-1 submit-btn">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
