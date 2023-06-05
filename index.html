@@ -2,14 +2,67 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="author" content="Gruppe 7" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap w/ Vite</title>
+    <title>Kundensupport</title>
     <script type="module" src="./main.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      rel="shortcut icon"
+      href="images/chatgpt-favicon.png"
+      type="image/x-icon" />
   </head>
   <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>Hello, Bootstrap and Vite!</h1>
-      <button class="btn btn-primary">Primary button</button>
+    <!-- START MAIN CONTAINER -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- START CONTENT -->
+        <div class="content p-0 pt-2 col-lg-12 col-md-12">
+          <div class="chat-content-area">
+            <!-- START USER CHAT -->
+            <div class="row user-chat-box">
+              <div class="chat-icon">
+                <img class="chatgpt-icon" src="images/user-icon.png" />
+              </div>
+              <div class="chat-txt">who are you?</div>
+            </div>
+
+            <!-- START GPT CHAT -->
+            <div class="row gpt-chat-box">
+              <div class="chat-icon">
+                <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+              </div>
+              <div class="chat-txt">
+                I am ChatGPT, a large language model developed by OpenAI. I am
+                an artificial intelligence designed to process and generate
+                human-like text based on the input provided to me. I am here to
+                assist you with any questions or tasks you may have to the best
+                of my abilities!
+              </div>
+            
+
+          <!-- START CHAT INPUTS -->
+        </div>
+      </div>
+      <div class="chat-input-area overflow-hidden">
+        <div class="row">
+          <div class="col-12 chat-inputs-area-inner">
+            <div
+              class="row chat-inputs-container d-flex align-items-center">
+              <textarea
+                name=""
+                id=""
+                class="col-11"
+                placeholder="Send a message"></textarea>
+              <span class="col-1">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
