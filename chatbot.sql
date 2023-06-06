@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS orders (
   createdAt datetime NOT NULL,
   sentAt datetime,
   deliveredAt datetime,
-  orderState ENUM("processing", "inDelivery", "delivered"),
+  orderState ENUM("in bearbeitung", "inDelivery", "geliefert"),
   isReturned BOOLEAN
 );
 
@@ -25,7 +25,7 @@ INSERT INTO orders(orderId, createdAt, sentAt, deliveredAt, orderState, isReturn
   "2023-03-02 11:01:02",
   "2023-03-04 12:12:55",
   "2023-03-05 18:56:05",
-  "delivered",
+  "geliefert",
   true
 );
 
@@ -34,7 +34,7 @@ INSERT INTO orders(orderId, createdAt, sentAt, deliveredAt, orderState, isReturn
   "2023-03-15 07:12:02",
   "2023-03-15 11:45:25",
   "2023-03-05 18:56:05",
-  "delivered",
+  "geliefert",
   true
 );
 
@@ -43,7 +43,7 @@ INSERT INTO orders(orderId, createdAt, sentAt, deliveredAt, orderState, isReturn
   "2023-04-02 09:01:22",
   "2023-04-03 17:12:55",
   "2023-04-04 14:01:22",
-  "delivered",
+  "geliefert",
   false
 );
 
@@ -52,7 +52,7 @@ INSERT INTO orders(orderId, createdAt, sentAt, deliveredAt, orderState, isReturn
   "2023-04-03 13:01:22",
   "2023-04-04 12:12:55",
   "2023-04-05 09:01:22",
-  "delivered",
+  "geliefert",
   false
 );
 
@@ -61,6 +61,6 @@ INSERT INTO orders(orderId, createdAt, sentAt, deliveredAt, orderState, isReturn
   "2023-06-05 13:01:22",
   "2023-06-06 12:12:55",
   NULL,
-  "processing",
+  "in bearbeitung",
   false
 );

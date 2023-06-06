@@ -21,6 +21,10 @@ app.get('/orders', cors(), (request, res) => {
   });
 });
 
+app.get('/returnorders', cors(), (request, res) => {
+  con.execute('UPDATE orders SET isReturned = TRUE WHERE orderId = ?', [request.query.orderId]);
+});
+
 app.get('/failedconversations', cors(), (request, res) => {});
 
 app.listen(port, () => {

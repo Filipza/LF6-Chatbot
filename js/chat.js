@@ -23,17 +23,32 @@ async function checkInput(input) {
   // check for order id
   const regex = /^DE\d{5}$/;
   if (input.match(regex)) {
-    const request = await fetch(`http://localhost:3000/orders?orderId=${input}`);
+    const request = await fetch(
+      `http://localhost:3000/orders?orderId=${input}`
+    );
     let response = await request.json();
     if (response.result.length > 0) {
       response = response.result[0];
       if (currentPill === "Bestellstatus überprüfen") {
-        createSupportChatbox(`Bestellstatus: ${response.orderId}`, []);
+        createSupportChatbox(
+          `Bestellnummer: ${response.orderId} <br> Bestellt am: ${formatDate(
+            response.createdAt
+          )} <br> Versendet am: ${formatDate(response.sentAt)} <br> Status: ${
+            response.orderState
+          } <br> Returniert: ${response.isReturned ? "Ja" : "Nein"}`
+        );
+        return;
       } else if (currentPill === "Retouren") {
-        // createSupportChatbox()
+        fetch(`http://localhost:3000/returnorders?orderId=${input}`);
+        createSupportChatbox(
+          `Die Bestellung mit der Bestellnummer: ${input} wurde erfolgreich storniert!`
+        );
+        return;
       }
     } else {
-      createSupportChatbox(`Leider konnten wir die Bestellnummer ${input} nicht finden.`, []);
+      createSupportChatbox(
+        `Leider konnten wir die Bestellnummer ${input} nicht finden.`
+      );
     }
   }
 
@@ -86,9 +101,11 @@ function createUserChatbox(message) {
   chatContentArea.lastChild.scrollIntoView({ block: "center" });
 }
 
-function createSupportChatbox(message, pills) {
+function createSupportChatbox(message, pills = []) {
   // hide pills
-  document.querySelectorAll(".gpt-chat-box .chat-options").forEach((box) => box.remove());
+  document
+    .querySelectorAll(".gpt-chat-box .chat-options")
+    .forEach((box) => box.remove());
 
   let pillsTemplate = "";
   if (pills.length > 0) {
@@ -127,4 +144,11 @@ function createSupportChatbox(message, pills) {
       }
     });
   });
+}
+
+function formatDate(date) {
+  return new Intl.DateTimeFormat("de-DE", {
+    dateStyle: "short",
+    timeStyle: "short",
+  }).format(new Date(date));
 }
