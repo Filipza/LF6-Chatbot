@@ -1,5 +1,8 @@
 # LF6 Chatbot
 
+[![Tests](https://github.com/Filipza/LF6-Chatbot/actions/workflows/tests.yml/badge.svg)](https://github.com/Filipza/LF6-Chatbot/actions/workflows/tests.yml)
+[![CodeQL](https://github.com/Filipza/LF6-Chatbot/actions/workflows/codeql.yml/badge.svg)](https://github.com/Filipza/LF6-Chatbot/actions/workflows/codeql.yml)
+
 Dieses Repository enthält den Code für unseren Chatbot zur Beantwortung von Serviceanfragen.
 
 ## Table of Contents
