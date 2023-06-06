@@ -25,7 +25,9 @@ app.get('/returnorders', cors(), (request, res) => {
   con.execute('UPDATE orders SET isReturned = TRUE WHERE orderId = ?', [request.query.orderId]);
 });
 
-app.get('/failedconversations', cors(), (request, res) => {});
+app.get('/failedconversations', cors(), (request, res) => {
+  con.execute('INSERT INTO failed_conversations(createdAt, message) VALUES(?, ?)', [new Date(), request.query.msg])
+});
 
 app.listen(port, () => {
   console.log(`Server started, listening on port ${port}`);

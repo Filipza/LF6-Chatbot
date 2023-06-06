@@ -99,7 +99,9 @@ async function checkInput(input) {
   createSupportChatbox(
     "Leider konnte deine Anfrange nicht bearbeitet werden! Bei welchem Thema kann ich dir weiterhelfen?",
     ["Bestellungen/Retouren", "Allgemeine Hilfe/FAQ"]
-    //LOG INFO
+  );
+  const request = await fetch(
+    `http://localhost:3000/failedconversations?msg=${input}`
   );
 }
 
