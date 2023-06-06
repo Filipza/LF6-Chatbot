@@ -1,4 +1,5 @@
 import Typewriter from 'typewriter-effect/dist/core';
+import { faqText } from './constants';
 
 const submitForm = document.querySelector("form");
 const textInput = document.querySelector("textarea");
@@ -164,6 +165,10 @@ function createSupportChatbox(message, pills = []) {
         if (pillType == "Retouren" || pillType == "Bestellstatus überprüfen") {
           createSupportChatbox("Bitte gebe deine Bestellnummer ein.", []);
           currentPill = pillType;
+        } else if (pillType === "FAQ") {
+          createSupportChatbox(faqText);
+        } else if (pillType === "Telefonservice") {
+          createSupportChatbox("Du kannst uns telefonisch kontaktieren Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer:  <a href='tel:+499123456789'>09123 456789</a>");
         }
       });
     });
