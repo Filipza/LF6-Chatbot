@@ -10,6 +10,7 @@ const orderKeywords = [
 ];
 const helpKeywords = ["hilfe", "kontakt", "anrufen"];
 const menuKeywords = ["home", "menü", "anfang"];
+let currentPill;
 
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -18,7 +19,24 @@ submitForm.addEventListener("submit", (e) => {
   e.target.reset();
 });
 
-function checkInput(input) {
+async function checkInput(input) {
+  // check for order id
+  const regex = /^DE\d{5}$/;
+  if (input.match(regex)) {
+    const request = await fetch(`http://localhost:3000/orders?orderId=${input}`);
+    let response = await request.json();
+    if (response.result.length > 0) {
+      response = response.result[0];
+      if (currentPill === "Bestellstatus überprüfen") {
+        createSupportChatbox(`Bestellstatus: ${response.orderId}`, []);
+      } else if (currentPill === "Retouren") {
+        // createSupportChatbox()
+      }
+    } else {
+      createSupportChatbox(`Leider konnten wir die Bestellnummer ${input} nicht finden.`, []);
+    }
+  }
+
   const keywords = [...orderKeywords, ...helpKeywords, ...menuKeywords];
   for (const keyword of keywords) {
     if (input.toLowerCase().includes(keyword)) {
@@ -27,18 +45,21 @@ function checkInput(input) {
           "Dir gehts also um Bestellungen, ja? Wähle eine der folgenden Themen",
           ["Bestellstatus überprüfen", "Retouren"]
         );
+        currentPill = "";
         return;
       } else if (helpKeywords.includes(keyword)) {
         createSupportChatbox("Wie können wir dir helfen?", [
           "FAQ",
           "Telefonservice",
         ]);
+        currentPill = "";
         return;
       } else if (menuKeywords.includes(keyword)) {
         createSupportChatbox("Wie kann ich dir behilflich sein?", [
           "Bestellungen",
           "Hilfe",
         ]);
+        currentPill = "";
         return "menu";
       }
     }
@@ -47,6 +68,7 @@ function checkInput(input) {
   createSupportChatbox(
     "Leider konnte deine Anfrange nicht bearbeitet werden! Bei welchem Thema kann ich dir weiterhelfen?",
     ["Bestellungen/Retouren", "Allgemeine Hilfe/FAQ"]
+    //LOG INFO
   );
 }
 
@@ -66,12 +88,7 @@ function createUserChatbox(message) {
 
 function createSupportChatbox(message, pills) {
   // hide pills
-  const supportChatBoxes = document.querySelectorAll(
-    ".gpt-chat-box .chat-options"
-  );
-  supportChatBoxes.forEach((box) => {
-    box.remove();
-  });
+  document.querySelectorAll(".gpt-chat-box .chat-options").forEach((box) => box.remove());
 
   let pillsTemplate = "";
   if (pills.length > 0) {
@@ -104,8 +121,9 @@ function createSupportChatbox(message, pills) {
       const pillType = pill.getAttribute("data-type");
       createUserChatbox(pillType);
       pill.parentElement.remove();
-      if (pillType == "Retouren") {
-        console.log("pille funzt");
+      if (pillType == "Retouren" || pillType == "Bestellstatus überprüfen") {
+        createSupportChatbox("Bitte gebe deine Bestellnummer ein.", []);
+        currentPill = pillType;
       }
     });
   });

@@ -15,11 +15,13 @@ const con = mysql.createConnection({
 
 con.connect();
 
-app.get('/orders', cors(), (_, res) => {
-  con.query('SELECT * from orders', (_, result) => {
+app.get('/orders', cors(), (request, res) => {
+  con.execute('SELECT * from orders WHERE orderId = ?', [request.query.orderId], (_, result) => {
     res.send(JSON.stringify({ result }));
   });
 });
+
+app.get('/failedconversations', cors(), (request, res) => {});
 
 app.listen(port, () => {
   console.log(`Server started, listening on port ${port}`);
