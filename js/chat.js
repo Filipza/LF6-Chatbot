@@ -1,3 +1,5 @@
+import Typewriter from 'typewriter-effect/dist/core';
+
 const submitForm = document.querySelector("form");
 const textInput = document.querySelector("textarea");
 const chatContentArea = document.querySelector(".chat-content-area");
@@ -11,6 +13,20 @@ const orderKeywords = [
 const helpKeywords = ["hilfe", "kontakt", "anrufen"];
 const menuKeywords = ["home", "menü", "anfang"];
 let currentPill;
+
+
+// create first chat message
+new Typewriter(`.chat-txt`, {
+  strings: `Herzlich willkommen zum Solutions IT Support! Ich bin dein
+  persönlicher Service-Assistent in Sachen Bestellungen, Retouren und allgemeine Serviceanfragen.
+  <br />
+  <br />
+  Wie kann ich dir behilflich sein?`,
+  autoStart: true,
+  delay: 0,
+}).callFunction(() => {
+  document.querySelector(".Typewriter__cursor").remove();
+});
 
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -98,17 +114,15 @@ function createSupportChatbox(message, pills) {
       </button>`;
     }
   }
+  const timestamp = new Date().getMilliseconds();
   // create chatbox
   const template = `<div class="gpt-chat-box">
       <div class="sub-chat-box">
         <div class="chat-icon">
           <img class="chatgpt-icon" src="images/gpt-icon.png" />
         </div>
-        <div class="chat-txt">
-          ${message}
-          <div class="chat-options d-flex mt-3">
-            ${pillsTemplate}
-          </div>
+        <div class="chat-txt" id="typewriter-${timestamp}">
+
         </div>
       </div>
     </div>`;
@@ -116,15 +130,23 @@ function createSupportChatbox(message, pills) {
   chatContentArea.insertAdjacentHTML("beforeend", template);
   chatContentArea.lastChild.scrollIntoView({ block: "center" });
 
-  document.querySelectorAll(".option-btn").forEach((pill) => {
-    pill.addEventListener("click", () => {
-      const pillType = pill.getAttribute("data-type");
-      createUserChatbox(pillType);
-      pill.parentElement.remove();
-      if (pillType == "Retouren" || pillType == "Bestellstatus überprüfen") {
-        createSupportChatbox("Bitte gebe deine Bestellnummer ein.", []);
-        currentPill = pillType;
-      }
+  new Typewriter(`#typewriter-${timestamp}`, {
+    strings: message,
+    autoStart: true,
+    delay: 0,
+  }).callFunction(() => {
+    document.querySelector(".Typewriter__cursor").remove();
+    chatContentArea.lastChild.querySelector(".chat-txt").insertAdjacentHTML("beforeend", `<div class="chat-options d-flex mt-3">${pillsTemplate}</div>`);
+    document.querySelectorAll(".option-btn").forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const pillType = pill.getAttribute("data-type");
+        createUserChatbox(pillType);
+        pill.parentElement.remove();
+        if (pillType == "Retouren" || pillType == "Bestellstatus überprüfen") {
+          createSupportChatbox("Bitte gebe deine Bestellnummer ein.", []);
+          currentPill = pillType;
+        }
+      });
     });
   });
 }
