@@ -39,6 +39,16 @@ function showWelcomeMessage() {
 // Show welcome message on page load
 showWelcomeMessage();
 
+// Enable Return for submission
+textInput.onkeydown = function (e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    createUserChatbox(textInput.value);
+    checkInput(textInput.value);
+    submitForm.reset();
+  }
+};
+
 // Handle form submission
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -195,7 +205,7 @@ function createSupportChatbox(message, pills = []) {
           createSupportChatbox(faqText);
         } else if (pillType === "Telefonservice") {
           createSupportChatbox(
-            "Du kannst uns telefonisch kontaktieren Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer:  <a href='tel:+499123456789'>09123 456789</a>"
+            "Du kannst uns Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer telefonisch kontaktieren:  <a href='tel:+499123456789'>09123 456789</a>"
           );
         } else if (pillType === "Allgemeine Hilfe/FAQ") {
           createSupportChatbox("Wie können wir dir helfen?", [
