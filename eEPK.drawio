@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-06-07T09:35:21.165Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="zXCpQcIAfZdgXFXRtpNA" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-06-07T10:05:53.342Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="Sf227dCanHAsjDtGETP6" version="21.2.8" type="device">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2856" dy="993" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -119,7 +119,7 @@
         <mxCell id="amlF8Ima9CR093_e57js-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="amlF8Ima9CR093_e57js-4" target="amlF8Ima9CR093_e57js-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="amlF8Ima9CR093_e57js-4" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Ausgewählte&lt;br&gt;Kategorie&lt;br&gt;&quot;Bestellungen&quot; wurde bestätigt&lt;/font&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="amlF8Ima9CR093_e57js-4" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Ausgewählte&lt;br&gt;Kategorie &quot;Hilfe&quot;&lt;br&gt;wurde bestätigt&lt;/font&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="90" y="400" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="amlF8Ima9CR093_e57js-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="amlF8Ima9CR093_e57js-6" target="amlF8Ima9CR093_e57js-20">
@@ -271,7 +271,7 @@
         <mxCell id="amlF8Ima9CR093_e57js-57" value="Bestellnr. wurde in DB gefunden" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="820" y="1180" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="amlF8Ima9CR093_e57js-58" value="Einleitung der Retournierung&lt;br&gt;wurde dem Kunden bestätigt&amp;nbsp;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="amlF8Ima9CR093_e57js-58" value="Einleitung&lt;br&gt;der Retoure&lt;br&gt;wurde dem Kunden bestätigt&amp;nbsp;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="820" y="1400" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="amlF8Ima9CR093_e57js-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="amlF8Ima9CR093_e57js-63" target="amlF8Ima9CR093_e57js-66">
