@@ -1,5 +1,5 @@
-import Typewriter from 'typewriter-effect/dist/core';
-import { faqText } from './constants';
+import Typewriter from "typewriter-effect/dist/core";
+import { faqText } from "./constants";
 
 const submitForm = document.querySelector("form");
 const textInput = document.querySelector("textarea");
@@ -15,19 +15,22 @@ const helpKeywords = ["hilfe", "kontakt", "anrufen"];
 const menuKeywords = ["home", "menü", "anfang"];
 let currentPill;
 
-
 // create first chat message
-new Typewriter(`.chat-txt`, {
-  strings: `Herzlich willkommen zum Solutions IT Support! Ich bin dein
-  persönlicher Service-Assistent in Sachen Bestellungen, Retouren und allgemeine Serviceanfragen.
-  <br />
-  <br />
-  Wie kann ich dir behilflich sein?`,
-  autoStart: true,
-  delay: 5,
-}).callFunction(() => {
-  document.querySelector(".Typewriter__cursor").remove();
-});
+function showWelcomeMessage() {
+  new Typewriter(`.chat-txt`, {
+    strings: `Herzlich willkommen zum Solutions IT Support! Ich bin dein
+    persönlicher Service-Assistent in Sachen Bestellungen, Retouren und allgemeine Serviceanfragen.
+    <br />
+    <br />
+    Wie kann ich dir behilflich sein?`,
+    autoStart: true,
+    delay: 5,
+  }).callFunction(() => {
+    document.querySelector(".Typewriter__cursor").remove();
+  });
+}
+
+showWelcomeMessage();
 
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -154,7 +157,12 @@ function createSupportChatbox(message, pills = []) {
     delay: 5,
   }).callFunction(() => {
     document.querySelector(".Typewriter__cursor").remove();
-    chatContentArea.lastChild.querySelector(".chat-txt").insertAdjacentHTML("beforeend", `<div class="chat-options d-flex mt-3">${pillsTemplate}</div>`);
+    chatContentArea.lastChild
+      .querySelector(".chat-txt")
+      .insertAdjacentHTML(
+        "beforeend",
+        `<div class="chat-options d-flex mt-3">${pillsTemplate}</div>`
+      );
     document.querySelectorAll(".option-btn").forEach((pill) => {
       pill.addEventListener("click", () => {
         const pillType = pill.getAttribute("data-type");
@@ -166,7 +174,9 @@ function createSupportChatbox(message, pills = []) {
         } else if (pillType === "FAQ") {
           createSupportChatbox(faqText);
         } else if (pillType === "Telefonservice") {
-          createSupportChatbox("Du kannst uns telefonisch kontaktieren Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer:  <a href='tel:+499123456789'>09123 456789</a>");
+          createSupportChatbox(
+            "Du kannst uns telefonisch kontaktieren Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer:  <a href='tel:+499123456789'>09123 456789</a>"
+          );
         } else if (pillType === "Allgemeine Hilfe/FAQ") {
           createSupportChatbox("Wie können wir dir helfen?", [
             "FAQ",
@@ -177,6 +187,11 @@ function createSupportChatbox(message, pills = []) {
     });
   });
 }
+
+// reset chat button
+document
+  .querySelector(".reset-btn")
+  .addEventListener("click", () => window.location.reload());
 
 function formatDate(date) {
   return new Intl.DateTimeFormat("de-DE", {
