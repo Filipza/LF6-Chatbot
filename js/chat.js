@@ -24,7 +24,7 @@ new Typewriter(`.chat-txt`, {
   <br />
   Wie kann ich dir behilflich sein?`,
   autoStart: true,
-  delay: 0,
+  delay: 5,
 }).callFunction(() => {
   document.querySelector(".Typewriter__cursor").remove();
 });
@@ -99,11 +99,9 @@ async function checkInput(input) {
 
   createSupportChatbox(
     "Leider konnte deine Anfrange nicht bearbeitet werden! Bei welchem Thema kann ich dir weiterhelfen?",
-    ["Bestellungen/Retouren", "Allgemeine Hilfe/FAQ"]
+    ["Bestellstatus überprüfen", "Allgemeine Hilfe/FAQ"]
   );
-  const request = await fetch(
-    `http://localhost:3000/failedconversations?msg=${input}`
-  );
+  fetch(`http://localhost:3000/failedconversations?msg=${input}`);
 }
 
 function createUserChatbox(message) {
@@ -153,7 +151,7 @@ function createSupportChatbox(message, pills = []) {
   new Typewriter(`#typewriter-${timestamp}`, {
     strings: message,
     autoStart: true,
-    delay: 0,
+    delay: 5,
   }).callFunction(() => {
     document.querySelector(".Typewriter__cursor").remove();
     chatContentArea.lastChild.querySelector(".chat-txt").insertAdjacentHTML("beforeend", `<div class="chat-options d-flex mt-3">${pillsTemplate}</div>`);
@@ -169,6 +167,11 @@ function createSupportChatbox(message, pills = []) {
           createSupportChatbox(faqText);
         } else if (pillType === "Telefonservice") {
           createSupportChatbox("Du kannst uns telefonisch kontaktieren Mo-Fr von 8:00 bis 12:00 Uhr unter der folgenden Nummer:  <a href='tel:+499123456789'>09123 456789</a>");
+        } else if (pillType === "Allgemeine Hilfe/FAQ") {
+          createSupportChatbox("Wie können wir dir helfen?", [
+            "FAQ",
+            "Telefonservice",
+          ]);
         }
       });
     });
