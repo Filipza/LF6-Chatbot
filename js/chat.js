@@ -1,9 +1,13 @@
+// Import Typewriter and constants
 import Typewriter from "typewriter-effect/dist/core";
 import { faqText } from "./constants";
 
+// Get DOM elements
 const submitForm = document.querySelector("form");
 const textInput = document.querySelector("textarea");
 const chatContentArea = document.querySelector(".chat-content-area");
+
+// Keywords for different chat options
 const orderKeywords = [
   "bestellungen",
   "retouren",
@@ -13,9 +17,11 @@ const orderKeywords = [
 ];
 const helpKeywords = ["hilfe", "kontakt", "anrufen"];
 const menuKeywords = ["home", "menü", "anfang"];
+
+// Current selected pill
 let currentPill;
 
-// create first chat message
+// Create first chat message
 function showWelcomeMessage() {
   new Typewriter(`.chat-txt`, {
     strings: `Herzlich willkommen zum Solutions IT Support! Ich bin dein
@@ -30,8 +36,10 @@ function showWelcomeMessage() {
   });
 }
 
+// Show welcome message on page load
 showWelcomeMessage();
 
+// Handle form submission
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
   createUserChatbox(textInput.value);
@@ -39,8 +47,9 @@ submitForm.addEventListener("submit", (e) => {
   e.target.reset();
 });
 
+// Check user input and create appropriate chatbox
 async function checkInput(input) {
-  // check for order id
+  // Check for order ID
   const regex = /^DE\d{5}$/;
   if (input.match(regex)) {
     const request = await fetch(
@@ -72,6 +81,7 @@ async function checkInput(input) {
     }
   }
 
+  // Check for keywords
   const keywords = [...orderKeywords, ...helpKeywords, ...menuKeywords];
   for (const keyword of keywords) {
     if (input.toLowerCase().includes(keyword)) {
@@ -100,6 +110,7 @@ async function checkInput(input) {
     }
   }
 
+  // Default response
   createSupportChatbox(
     "Leider konnte deine Anfrange nicht bearbeitet werden! Bei welchem Thema kann ich dir weiterhelfen?",
     ["Bestellstatus überprüfen", "Allgemeine Hilfe/FAQ"]
@@ -107,6 +118,7 @@ async function checkInput(input) {
   fetch(`http://localhost:3000/failedconversations?msg=${input}`);
 }
 
+// Create chatbox for user message
 function createUserChatbox(message) {
   const template = `<div class="user-chat-box">
     <div class="sub-chat-box">
@@ -121,12 +133,14 @@ function createUserChatbox(message) {
   chatContentArea.lastChild.scrollIntoView({ block: "center" });
 }
 
+// Create chatbox for support message
 function createSupportChatbox(message, pills = []) {
-  // hide pills
+  // Hide pills
   document
     .querySelectorAll(".gpt-chat-box .chat-options")
     .forEach((box) => box.remove());
 
+  // Create pills template
   let pillsTemplate = "";
   if (pills.length > 0) {
     for (const pill of pills) {
@@ -135,8 +149,9 @@ function createSupportChatbox(message, pills = []) {
       </button>`;
     }
   }
+
+  // Create chatbox template
   const timestamp = new Date().getMilliseconds();
-  // create chatbox
   const template = `<div class="gpt-chat-box">
       <div class="sub-chat-box">
         <div class="chat-icon">
@@ -148,26 +163,31 @@ function createSupportChatbox(message, pills = []) {
       </div>
     </div>`;
 
+  // Insert chatbox into DOM
   chatContentArea.insertAdjacentHTML("beforeend", template);
   chatContentArea.lastChild.scrollIntoView({ block: "center" });
 
+  // Add message to chatbox using Typewriter
   new Typewriter(`#typewriter-${timestamp}`, {
     strings: message,
     autoStart: true,
     delay: 5,
   }).callFunction(() => {
     document.querySelector(".Typewriter__cursor").remove();
+    // Add pills to chatbox
     chatContentArea.lastChild
       .querySelector(".chat-txt")
       .insertAdjacentHTML(
         "beforeend",
         `<div class="chat-options d-flex mt-3">${pillsTemplate}</div>`
       );
+    // Add event listeners to pills
     document.querySelectorAll(".option-btn").forEach((pill) => {
       pill.addEventListener("click", () => {
         const pillType = pill.getAttribute("data-type");
         createUserChatbox(pillType);
         pill.parentElement.remove();
+        // check selected pill and give fitting response
         if (pillType == "Retouren" || pillType == "Bestellstatus überprüfen") {
           createSupportChatbox("Bitte gebe deine Bestellnummer ein.", []);
           currentPill = pillType;
@@ -188,11 +208,12 @@ function createSupportChatbox(message, pills = []) {
   });
 }
 
-// reset chat button
+// Reload page on reset button click
 document
   .querySelector(".reset-btn")
   .addEventListener("click", () => window.location.reload());
 
+// Format date for display
 function formatDate(date) {
   return new Intl.DateTimeFormat("de-DE", {
     dateStyle: "short",
